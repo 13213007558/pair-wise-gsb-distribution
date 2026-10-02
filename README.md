@@ -27,6 +27,7 @@ The following table lists the available distributions and the methods available 
 | Gamma            |     |     | x        | x   | x    | x    | x        | x        | x        | x       |
 | Weibull          |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
+| Poisson-binomial |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 
@@ -104,6 +105,7 @@ Shortnames for distributions:
   * F: fdist
   * Chi Square: chisq
   * Binomial: bino
+  * Poisson-binomial: poibino
   * Hypergeometric: hypg
   * Exponential: expo
   * Poisson: pois

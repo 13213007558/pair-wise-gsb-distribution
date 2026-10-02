@@ -101,6 +101,7 @@ module Distribution
   require 'distribution/f'
   require 'distribution/bivariatenormal'
   require 'distribution/binomial'
+  require 'distribution/poisson_binomial'
   require 'distribution/hypergeometric'
   require 'distribution/exponential'
   require 'distribution/poisson'
