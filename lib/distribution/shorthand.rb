@@ -1,7 +1,9 @@
 module Distribution
   module Shorthand
     EQUIVALENCES = { p_value: :p, cdf: :cdf, pdf: :pdf, rng: :r,
-                     exact_pdf: :epdf, exact_cdf: :ecdf, exact_p_value: :ep }
+                     pmf: :pmf, ccdf: :ccdf,
+                     exact_pdf: :epdf, exact_cdf: :ecdf, exact_p_value: :ep,
+                     exact_pmf: :epmf, exact_ccdf: :eccdf }
 
     def self.add_shortcut(shortcut, method, &block)
       if EQUIVALENCES.include? method.to_sym

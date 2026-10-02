@@ -27,6 +27,7 @@ The following table lists the available distributions and the methods available 
 | Gamma            |     |     | x        | x   | x    | x    | x        | x        | x        | x       |
 | Weibull          |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
+| Poisson-Binomial |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 
@@ -60,6 +61,13 @@ cdf = Distribution::Normal.cdf(x)
 
 # Returns inverse CDF (or p-value) for x.
 pv = Distribution::Normal.p_value(x)
+
+# Poisson-binomial: independent Bernoulli trials with different probabilities.
+probs = [0.05, 0.1, 0.2, 0.7]
+Distribution::PoissonBinomial.pmf(2, probs)        # P(exactly 2 failures)
+Distribution::PoissonBinomial.cdf(2, probs)        # P(at most 2 failures)
+Distribution::PoissonBinomial.right_tail(2, probs) # P(at least 2 failures)
+Distribution::PoissonBinomial.quantile(0.95, probs)
 
 # API.
 
@@ -104,6 +112,7 @@ Shortnames for distributions:
   * F: fdist
   * Chi Square: chisq
   * Binomial: bino
+  * Poisson-Binomial: pbino
   * Hypergeometric: hypg
   * Exponential: expo
   * Poisson: pois
@@ -111,6 +120,36 @@ Shortnames for distributions:
   * Gamma: gamma
   * LogNormal: lognormal
   * Uniform: unif
+
+## Poisson-Binomial
+
+`Distribution::PoissonBinomial` accepts a finite list of independent Bernoulli
+probabilities. Every value must be a finite `Numeric` in `[0, 1]`. Probabilities
+equal to `0` or `1` are treated as deterministic events before numerical
+recursion; for example, two certain events shift the support to start at `2`.
+
+Available methods are:
+
+* `pmf(k, probabilities)` (alias `pdf`): probability of exactly `k` events.
+* `cdf(k, probabilities)`: probability of at most `k` events.
+* `right_tail(k, probabilities)` (aliases `ccdf`, `survival`): probability of at
+  least `k` events. It sums upper-tail masses directly; it never uses
+  `1 - cdf`, which can lose a very small tail to floating-point cancellation.
+* `quantile(p, probabilities)` (alias `p_value`): smallest `k` for which
+  `cdf(k, probabilities) >= p`.
+
+The pure-Ruby recurrence uses `O(n^2)` time and `O(n)` memory for `n`
+probabilities and is intended for moderate lists. Float results are normalized
+so that the complete PMF sums to exactly `1.0`; a floating-point adjustment is
+applied to the largest probability mass. Individual PMF, CDF and tail values
+still have ordinary floating-point error near machine epsilon. A tail below
+the representable Float range can underflow to `0.0`. For exact short lists,
+pass `Rational` probabilities (`1.quo(4)`); this avoids underflow but rational
+denominators can grow quickly.
+
+When all supplied probabilities are equal, the distribution is the existing
+binomial distribution. Short lists are checked against exhaustive enumeration
+of every true/false combination in the test suite.
 
 ## Roadmap
 
