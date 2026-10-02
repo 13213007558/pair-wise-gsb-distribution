@@ -2,6 +2,7 @@ require 'distribution/f/ruby'
 require 'distribution/f/gsl'
 require 'distribution/f/statistics2'
 require 'distribution/f/java'
+require 'distribution/f/noncentral'
 module Distribution
   # Calculate cdf and inverse cdf for F Distribution.
   #
