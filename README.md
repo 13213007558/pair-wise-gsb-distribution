@@ -28,6 +28,7 @@ The following table lists the available distributions and the methods available 
 | Weibull          |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
+| Compound Poisson |     |     | x        | x   | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 
 ## Installation
@@ -72,6 +73,25 @@ include Distribution::Shorthand
 tdist_cdf(x)
 ```
 
+### Compound Poisson (total cost of a random number of requests)
+
+```ruby
+# Number of requests ~ Poisson(2.5); each request costs 0, 1 or 3
+# with the given probabilities.
+table = { 0 => 0.2, 1 => 0.5, 3 => 0.3 }
+res = Distribution::CompoundPoisson.pmf_table(2.5, table, 0..10)
+
+res.pmf          # => {0 => P(S=0), 1 => P(S=1), ..., 10 => P(S=10)}
+res.cdf          # => cumulative P(S <= k) for k in 0..10
+res.lower_mass   # => P(S < 0)
+res.upper_mass   # => P(S > 10), the omitted tail mass
+res.omitted_mass # => total mass outside the requested range
+```
+
+The distribution of the total cost is computed exactly with the Panjer
+recursion, so the Poisson request count is never truncated at an
+arbitrary bound.
+
 ## API Structure
 
 ```ruby
@@ -107,6 +127,7 @@ Shortnames for distributions:
   * Hypergeometric: hypg
   * Exponential: expo
   * Poisson: pois
+  * Compound Poisson: cpoi
   * Beta: beta
   * Gamma: gamma
   * LogNormal: lognormal

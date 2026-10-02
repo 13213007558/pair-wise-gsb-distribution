@@ -1,3 +1,9 @@
+=== 0.8.0 / unreleased
+  * Added Distribution::CompoundPoisson: exact distribution (Panjer
+    recursion) of the total cost of a Poisson number of requests with
+    discrete, non-negative integer costs. Provides pmf_table (PMF, CDF
+    and omitted mass over a range), pdf and cdf.
+
 === 0.7.4 / 2018-04-11
   * Removed reference to deprecated Fixnum class.
 
