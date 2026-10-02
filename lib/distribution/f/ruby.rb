@@ -32,7 +32,10 @@ module Distribution
 
       class << self
         # F Distribution (Ruby) -- Probability Density Function
-        def pdf(x, n, m)
+        def pdf(x, n, m, ncp = nil, tolerance: Distribution::NoncentralF::Ruby_::DEFAULT_TOLERANCE,
+                              max_iterations: Distribution::NoncentralF::Ruby_::DEFAULT_ITERATIONS)
+          return Distribution::NoncentralF::Ruby_.pdf(x, n, m, ncp, tolerance: tolerance,
+                                                              max_iterations: max_iterations) unless ncp.nil?
           x = x.to_f
           numerator = ((n * x)**n * (m**m)) / (n * x + m)**(n + m)
           denominator = x * Math.beta(n / 2.0, m / 2.0)
@@ -41,7 +44,10 @@ module Distribution
         end
 
         # Cumulative Distribution Function.
-        def cdf(x, n, m)
+        def cdf(x, n, m, ncp = nil, tolerance: Distribution::NoncentralF::Ruby_::DEFAULT_TOLERANCE,
+                              max_iterations: Distribution::NoncentralF::Ruby_::DEFAULT_ITERATIONS)
+          return Distribution::NoncentralF::Ruby_.cdf(x, n, m, ncp, tolerance: tolerance,
+                                                              max_iterations: max_iterations) unless ncp.nil?
           x = x.to_f
           xx = (x * n).to_f / (x * n + m).to_f
           regularized_beta(xx, n / 2.0, m / 2.0)
@@ -50,9 +56,14 @@ module Distribution
         # Upper cumulative function.
         #
         # If cdf(x, n, m) = p, then q(x, n, m) = 1 - p
-        def q(x, n, m)
+        def q(x, n, m, ncp = nil, tolerance: Distribution::NoncentralF::Ruby_::DEFAULT_TOLERANCE,
+                              max_iterations: Distribution::NoncentralF::Ruby_::DEFAULT_ITERATIONS)
+          return Distribution::NoncentralF::Ruby_.survival(x, n, m, ncp, tolerance: tolerance,
+                                                                   max_iterations: max_iterations) unless ncp.nil?
           1.0 - cdf(x, n, m)
         end
+
+        alias_method :survival, :q
 
         # Return the F value corresponding to `probability` with degrees of
         # freedom `n` and `m`.
@@ -61,7 +72,12 @@ module Distribution
         #
         # Taken from:
         # https://github.com/JuliaLang/Rmath-julia/blob/master/src/qf.c
-        def quantile(probability, n, m)
+        def quantile(probability, n, m, ncp = nil,
+                     tolerance: Distribution::NoncentralF::Ruby_::DEFAULT_TOLERANCE,
+                     max_iterations: Distribution::NoncentralF::Ruby_::DEFAULT_ITERATIONS)
+          return Distribution::NoncentralF::Ruby_.quantile(probability, n, m, ncp,
+                                                           tolerance: tolerance,
+                                                           max_iterations: max_iterations) unless ncp.nil?
           return Float::NAN if n <= 0.0 || m <= 0.0
 
           if n == Float::INFINITY || n == -Float::INFINITY || m == Float::INFINITY || m == -Float::INFINITY

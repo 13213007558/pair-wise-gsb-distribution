@@ -99,6 +99,7 @@ module Distribution
   require 'distribution/beta'
   require 'distribution/t'
   require 'distribution/f'
+  require 'distribution/noncentral_f'
   require 'distribution/bivariatenormal'
   require 'distribution/binomial'
   require 'distribution/hypergeometric'

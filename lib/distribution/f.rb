@@ -10,6 +10,42 @@ module Distribution
     extend Distributable
     create_distribution_methods
 
+    class << self
+      def pdf(x, k1, k2, ncp = nil, **options)
+        return Distribution::NoncentralF::Ruby_.pdf(x, k1, k2, ncp, **options) unless ncp.nil?
+        engine_for(:pdf).pdf(x, k1, k2)
+      end
+
+      def cdf(x, k1, k2, ncp = nil, **options)
+        return Distribution::NoncentralF::Ruby_.cdf(x, k1, k2, ncp, **options) unless ncp.nil?
+        engine_for(:cdf).cdf(x, k1, k2)
+      end
+
+      def survival(x, k1, k2, ncp = nil, **options)
+        return Distribution::NoncentralF::Ruby_.survival(x, k1, k2, ncp, **options) unless ncp.nil?
+        Distribution::F::Ruby_.q(x, k1, k2)
+      end
+
+      alias_method :q, :survival
+
+      def quantile(probability, k1, k2, ncp = nil, **options)
+        return Distribution::NoncentralF::Ruby_.quantile(probability, k1, k2, ncp, **options) unless ncp.nil?
+        engine_for(:quantile).quantile(probability, k1, k2)
+      end
+
+      alias_method :p_value, :quantile
+      alias_method :inverse_cdf, :quantile
+
+      private
+
+      def engine_for(method)
+        engine_name = Distribution.libraries_order.find do |name|
+          const_get(name).respond_to?(method)
+        end
+        const_get(engine_name || :Ruby_)
+      end
+    end
+
     ##
     # :singleton-method: pdf(x,k1,k2)
     # Returns the PDF of F distribution
