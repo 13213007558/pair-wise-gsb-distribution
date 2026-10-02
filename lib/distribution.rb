@@ -100,6 +100,7 @@ module Distribution
   require 'distribution/t'
   require 'distribution/f'
   require 'distribution/bivariatenormal'
+  require 'distribution/normalmultivariate'
   require 'distribution/binomial'
   require 'distribution/hypergeometric'
   require 'distribution/exponential'
