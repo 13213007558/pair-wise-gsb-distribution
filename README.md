@@ -28,6 +28,7 @@ The following table lists the available distributions and the methods available 
 | Weibull          |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
+| Compound Poisson | x   | x   | x        | x   | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 
 ## Installation
@@ -60,6 +61,12 @@ cdf = Distribution::Normal.cdf(x)
 
 # Returns inverse CDF (or p-value) for x.
 pv = Distribution::Normal.p_value(x)
+
+# Returns PMF, CDF, and omitted mass for a compound Poisson total cost.
+result = Distribution::CompoundPoisson.distribution(2.0, { 0 => 0.2, 1 => 0.8 }, 0..5)
+result.pmf
+result.cdf
+result.omitted_mass
 
 # API.
 
@@ -107,6 +114,7 @@ Shortnames for distributions:
   * Hypergeometric: hypg
   * Exponential: expo
   * Poisson: pois
+  * Compound Poisson: cmpois
   * Beta: beta
   * Gamma: gamma
   * LogNormal: lognormal
