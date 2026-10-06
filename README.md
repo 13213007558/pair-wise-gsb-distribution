@@ -78,6 +78,34 @@ tdist_cdf(x)
 Distribution::<name>.(cdf|pdf|p_value|rng)
 ```
 
+## Adaptive rejection sampling
+
+For posteriors known only through an unnormalized log-density (no
+distribution class, no normalizing constant),
+`Distribution::AdaptiveRejectionSampler` implements Gilks & Wild's
+adaptive rejection sampling for log-concave densities. Pass the
+log-density, its derivative, the support bounds and a few starting
+points; the returned object keeps producing samples and refines its
+envelope after every rejection. Bounded, one-sided and two-sided
+unbounded supports are accepted. The sampler verifies that the tangent
+upper hull is integrable and raises if the density violates the
+log-concavity assumptions instead of returning invalid samples.
+
+```ruby
+sampler = Distribution::AdaptiveRejectionSampler.new(
+  log_pdf:  ->(x) { -0.5 * x * x }, # unnormalized N(0, 1) log-density
+  dlog_pdf: ->(x) { -x },
+  lower: -Float::INFINITY,
+  upper: Float::INFINITY,
+  points: [-1.0, 0.0, 1.0],
+  rng: Random.new(42), # caller-controlled random source
+  max_attempts: 1000   # caller-controlled attempt limit
+)
+
+sampler.sample    # => one Float
+sampler.sample(5) # => Array of 5 Floats
+```
+
 On discrete distributions, exact Ruby implementations of pdf, cdf and p_value could be provided, using
 
 ```

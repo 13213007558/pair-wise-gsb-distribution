@@ -1,3 +1,8 @@
+=== Unreleased
+  * Added Distribution::AdaptiveRejectionSampler: adaptive rejection
+    sampling (Gilks & Wild, 1992) for univariate log-concave densities
+    known only up to a normalizing constant.
+
 === 0.7.4 / 2018-04-11
   * Removed reference to deprecated Fixnum class.
 
