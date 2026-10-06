@@ -39,6 +39,7 @@
 require 'distribution/math_extension'
 require 'distribution/shorthand'
 require 'distribution/distributable'
+require 'distribution/mixture'
 require 'distribution/version'
 
 # Several distributions modules to calculate pdf, cdf, inverse cdf and generate
