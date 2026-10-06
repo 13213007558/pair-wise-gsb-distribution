@@ -78,6 +78,26 @@ tdist_cdf(x)
 Distribution::<name>.(cdf|pdf|p_value|rng)
 ```
 
+## Phase-type distributions
+
+`Distribution::PhaseType` models the absorption time of a finite Markov
+jump process from an initial probability vector and a transient
+generator matrix (pure Ruby, no matrix library required):
+
+```ruby
+# Erlang-2 with rate 2
+ph = Distribution::PhaseType.new([1, 0], [[-2, 2], [0, -2]])
+ph.survival(0.5)          # P(T > 0.5)
+ph.pdf(0.5)               # density of the continuous part
+ph.moment(2)              # E[T^2]
+ph.residual_lifetime(0.5) # PH distribution of T - 0.5 given T > 0.5
+```
+
+The generator is validated on construction; a model that cannot absorb
+with probability one raises `NotAbsorbingError` instead of being
+renormalized. The defect of the initial vector is reported separately
+as `zero_mass`.
+
 On discrete distributions, exact Ruby implementations of pdf, cdf and p_value could be provided, using
 
 ```
