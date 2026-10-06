@@ -29,6 +29,7 @@ The following table lists the available distributions and the methods available 
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
+| Phase-type       |  x  |  x  |    x     | x   | x    | x    | x        | x        | x        | x       |
 
 ## Installation
 
@@ -70,6 +71,24 @@ p = Distribution::T.cdf(x)
 
 include Distribution::Shorthand
 tdist_cdf(x)
+```
+
+A continuous phase-type distribution is constructed from an initial transient
+probability vector and a continuous-time sub-generator. It supports defective
+distributions: initial probability may already be absorbed, and transient mass
+in closed components is reported as mass at infinity.
+
+```ruby
+ph = Distribution::PhaseType.new(alpha, t)
+ph.pdf(x)
+ph.cdf(x)
+ph.sf(x)
+ph.moment(2)
+ph.quantile(0.95)
+ph.eventual_absorption_probability
+ph.infinite_mass
+
+value, info = ph.cdf(x, with_info: true)
 ```
 
 ## API Structure

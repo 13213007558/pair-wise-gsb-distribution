@@ -107,6 +107,7 @@ module Distribution
   require 'distribution/logistic'
   require 'distribution/lognormal'
   require 'distribution/weibull'
+  require 'distribution/phase_type'
 
   init_java if has_java?
 end
