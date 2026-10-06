@@ -61,6 +61,10 @@ cdf = Distribution::Normal.cdf(x)
 # Returns inverse CDF (or p-value) for x.
 pv = Distribution::Normal.p_value(x)
 
+# Finite-n one-sample, two-sided Kolmogorov-Smirnov distribution.
+# cdf, sf and quantile are exact finite-sample calculations.
+Distribution::KolmogorovSmirnov.sf(statistic, n)
+
 # API.
 
 # You would normally use the following
@@ -87,7 +91,7 @@ On discrete distributions, exact Ruby implementations of pdf, cdf and p_value co
 module Distribution::Shorthand provides (you guess?) shortands method to call all methods
 
 ```
-  <Distribution shortname>_(cdf|pdf|p|r)
+  <Distribution shortname>_(cdf|sf|pdf|p|r)
 ```
 
 On discrete distributions, exact cdf, pdf and p_value are
@@ -111,6 +115,7 @@ Shortnames for distributions:
   * Gamma: gamma
   * LogNormal: lognormal
   * Uniform: unif
+  * Kolmogorov-Smirnov: ks
 
 ## Roadmap
 
