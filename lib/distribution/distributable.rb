@@ -18,13 +18,13 @@ module Distribution
           # Add methods from engine to base base, if not yet included
           l.singleton_methods.each do |m|
             unless singleton_methods.include? m
-              define_method(m) do |*args|
-                l.send(m, *args)
+              define_method(m) do |*args, **kwargs|
+                l.send(m, *args, **kwargs)
               end
               # Add method to Distribution::Shorthand
               sh = const_get(:SHORTHAND)
-              Distribution::Shorthand.add_shortcut(sh, m) do |*args|
-                l.send(m, *args)
+              Distribution::Shorthand.add_shortcut(sh, m) do |*args, **kwargs|
+                l.send(m, *args, **kwargs)
               end
 
               module_function m

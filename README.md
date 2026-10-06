@@ -29,6 +29,7 @@ The following table lists the available distributions and the methods available 
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
+| Stable (Nolan S0) |     |     | x        |     | x    | x    | x        | x        | x        | x       |
 
 ## Installation
 
@@ -72,6 +73,23 @@ include Distribution::Shorthand
 tdist_cdf(x)
 ```
 
+Four-parameter stable distributions use Nolan's `S0` parameterization:
+
+```ruby
+Distribution::Stable.pdf(x, alpha: 1.3, beta: -0.4, delta: 0.2, gamma: 1.1)
+Distribution::Stable.cdf(x, alpha: 1.3, beta: -0.4, delta: 0.2, gamma: 1.1)
+
+generator = Distribution::Stable.rng(
+  alpha: 1.3, beta: -0.4, delta: 0.2, gamma: 1.1, source: Random.new(1234)
+)
+generator.call
+```
+
+`parameters_from_s1` and `parameters_to_s1` provide the explicit Nolan `S1`
+conversions. Pass `diagnostics: true` to PDF/CDF calls to receive the estimated
+numerical error and convergence status instead of raising when the requested
+tolerance cannot be reached.
+
 ## API Structure
 
 ```ruby
@@ -110,6 +128,7 @@ Shortnames for distributions:
   * Beta: beta
   * Gamma: gamma
   * LogNormal: lognormal
+  * Stable: stab
   * Uniform: unif
 
 ## Roadmap
