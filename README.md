@@ -72,6 +72,31 @@ include Distribution::Shorthand
 tdist_cdf(x)
 ```
 
+### Phase-type service times
+
+`Distribution::PhaseType` models finite mixtures of exponential phases without
+using an external matrix library. Pass the transient initial probability vector
+and sub-generator. Any missing initial probability is available separately as
+zero-time absorption mass; models containing a phase that cannot reach
+absorption are rejected rather than normalized.
+
+```ruby
+# Two unit-rate exponential stages in series: Erlang(2, 1)
+ph = Distribution::PhaseType.new(
+  [1, 0],
+  [[-1, 1],
+   [0, -1]]
+)
+
+ph.survival(1)             # P(T > 1)
+ph.density(1)              # f(1)
+ph.cdf(1)                 # P(T <= 1)
+ph.moments_upto(3)        # Raw moments
+ph.initial_absorption_mass
+residual = ph.residual_life(1)
+residual.mean             # Mean remaining time conditional on T > 1
+```
+
 ## API Structure
 
 ```ruby
