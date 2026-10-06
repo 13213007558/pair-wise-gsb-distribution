@@ -40,6 +40,7 @@ require 'distribution/math_extension'
 require 'distribution/shorthand'
 require 'distribution/distributable'
 require 'distribution/version'
+require 'distribution/adaptive_rejection_sampler'
 
 # Several distributions modules to calculate pdf, cdf, inverse cdf and generate
 # pseudo-random numbers for several statistical distributions
