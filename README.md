@@ -29,6 +29,16 @@ The following table lists the available distributions and the methods available 
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
+| Wallenius' noncentral hypergeometric | x | x |  | x | x |  |  |  |  |  |
+
+Wallenius' noncentral hypergeometric distribution (two colors) models
+sequential draws without replacement where each class has its own
+sampling weight. It is *not* Fisher's noncentral hypergeometric
+distribution, which is a different (conditional) model. With odds = 1
+it reduces to the ordinary hypergeometric distribution. Its point
+probabilities require numerical integration; the
++pdf_with_status+/+cdf_with_status+/+mean_with_status+ methods report
+whether the integral converged.
 
 ## Installation
 
@@ -105,6 +115,7 @@ Shortnames for distributions:
   * Chi Square: chisq
   * Binomial: bino
   * Hypergeometric: hypg
+  * Wallenius' noncentral hypergeometric: whypg
   * Exponential: expo
   * Poisson: pois
   * Beta: beta
