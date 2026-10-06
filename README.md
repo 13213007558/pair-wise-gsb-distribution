@@ -29,6 +29,7 @@ The following table lists the available distributions and the methods available 
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
+| Von Mises        |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 
 ## Installation
 
@@ -65,6 +66,15 @@ pv = Distribution::Normal.p_value(x)
 
 # You would normally use the following
 p = Distribution::T.cdf(x)
+
+# Von Mises uses radians and treats angles modulo 2*pi.
+Distribution::VonMises.pdf(0.02, 0, 10)
+Distribution::VonMises.cdf(0.02, 0, 10, 0)
+Distribution::VonMises.quantile(0.95, 0, 10, 0)
+
+# Directed circular-arc probability. A negative length runs in the
+# opposite direction; a zero arc and a full turn remain distinct.
+Distribution::VonMises.arc_probability(-0.02, 0.04, 0, 10)
 
 # to get the cumulative probability of `x`. However, you can also:
 
@@ -111,6 +121,7 @@ Shortnames for distributions:
   * Gamma: gamma
   * LogNormal: lognormal
   * Uniform: unif
+  * Von Mises: vmis
 
 ## Roadmap
 
