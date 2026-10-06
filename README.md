@@ -110,7 +110,14 @@ Shortnames for distributions:
   * Beta: beta
   * Gamma: gamma
   * LogNormal: lognormal
+  * Stable (Nolan S0): stab
   * Uniform: unif
+
+`Distribution::Stable` takes `(alpha, beta, scale, location)` in Nolan's S0
+parameterization. Use `Stable.s1_parameters` and
+`Stable.from_s1_parameters` for explicit S1 conversion. PDF/CDF calls accept
+`diagnostics: true` to expose integration diagnostics instead of raising when
+the requested precision is not reached.
 
 ## Roadmap
 
