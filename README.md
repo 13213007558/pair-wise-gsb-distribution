@@ -26,6 +26,7 @@ The following table lists the available distributions and the methods available 
 | Beta             |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Gamma            |     |     | x        | x   | x    | x    | x        | x        | x        | x       |
 | Weibull          |     |     |          | x   | x    | x    | x        | x        | x        | x       |
+| Von Mises        |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
@@ -111,6 +112,7 @@ Shortnames for distributions:
   * Gamma: gamma
   * LogNormal: lognormal
   * Uniform: unif
+  * Von Mises: vonmises
 
 ## Roadmap
 
