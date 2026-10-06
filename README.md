@@ -30,6 +30,26 @@ The following table lists the available distributions and the methods available 
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 
+### Mixtures
+
+`Distribution::Mixture` combines existing distributions and explicit point
+masses into a single distribution with `density`, `mass_at`, `cdf` and a
+generalized-inverse `quantile` (jumps and CDF plateaus are resolved exactly,
+not by continuous root-finding):
+
+    mix = Distribution::Mixture.new(
+      components: [[0.25, dist_a], [0.25, dist_b]], # [weight, component]
+      atoms: [[0.5, 0.0]]                           # [weight, location]
+    )
+    mix.cdf(0)        # => 0.5
+    mix.mass_at(0)    # => 0.5
+    mix.quantile(0.2) # => 0.0
+
+Components are any objects responding to `cdf` and `quantile` (plus `pdf` or
+`density` for Mixture#density). Weights are normalized to sum to 1 by default
+(pass `normalize: false` to keep them as given); negative weights are
+rejected, and atoms at the same location are merged.
+
 ## Installation
 
 ```

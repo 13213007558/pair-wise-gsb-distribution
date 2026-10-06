@@ -1,3 +1,10 @@
+=== Unreleased
+  * Added Distribution::Mixture: finite mixtures of continuous components
+    and explicit point masses, with density, mass_at, cdf and a
+    generalized-inverse quantile that resolves atom jumps and CDF plateaus
+    exactly. Weights are normalized by default; negative weights are
+    rejected and atoms at the same location are merged.
+
 === 0.7.4 / 2018-04-11
   * Removed reference to deprecated Fixnum class.
 
