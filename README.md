@@ -29,6 +29,7 @@ The following table lists the available distributions and the methods available 
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
+| Wallenius Noncentral Hypergeometric |     |     | x        | x   | x    | x        | x        | x        | x       |
 
 ## Installation
 
@@ -105,6 +106,7 @@ Shortnames for distributions:
   * Chi Square: chisq
   * Binomial: bino
   * Hypergeometric: hypg
+  * Wallenius Noncentral Hypergeometric: wnhypg
   * Exponential: expo
   * Poisson: pois
   * Beta: beta

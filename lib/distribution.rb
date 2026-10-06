@@ -102,6 +102,7 @@ module Distribution
   require 'distribution/bivariatenormal'
   require 'distribution/binomial'
   require 'distribution/hypergeometric'
+  require 'distribution/wallenius_hypergeometric'
   require 'distribution/exponential'
   require 'distribution/poisson'
   require 'distribution/logistic'
