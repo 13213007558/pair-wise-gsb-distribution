@@ -94,6 +94,7 @@ module Distribution
   create_has_library :java
 
   require 'distribution/normal'
+  require 'distribution/truncated_normal'
   require 'distribution/chisquare'
   require 'distribution/gamma'
   require 'distribution/beta'
