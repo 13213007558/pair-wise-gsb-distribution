@@ -61,6 +61,16 @@ cdf = Distribution::Normal.cdf(x)
 # Returns inverse CDF (or p-value) for x.
 pv = Distribution::Normal.p_value(x)
 
+# A truncated normal keeps its normalized density and moments.
+# Sampling uses inverse CDF transformation, not rejection sampling.
+tn = Distribution::TruncatedNormal.new(12.0, 12.01, rng: Random.new(42))
+tn.pdf(12.005)
+tn.mean
+tn.variance
+tn.quantile(0.5)
+5.times { tn.sample }
+tn.attempts # => 5
+
 # API.
 
 # You would normally use the following
