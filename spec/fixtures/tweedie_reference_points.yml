@@ -1,0 +1,91 @@
+# High-precision reference points generated independently with mpmath.
+# terms_needed is the first count where the omitted right tail is below 1e-30.
+cases:
+  - mean: 2.3
+    dispersion: 0.7
+    power: 1.5
+    zero_probability: "0.01312716302319971452927"
+    points:
+      - x: 0.1
+        density: "0.1302666564172039977024"
+        log_density: "-2.038171726162246541525"
+        terms_needed: 17
+      - x: 0.5
+        density: "0.2093965490330761928516"
+        log_density: "-1.56352546094379292932"
+        terms_needed: 22
+      - x: 1.0
+        density: "0.2682350411955696947044"
+        log_density: "-1.315891663441619240871"
+        terms_needed: 25
+      - x: 2.0
+        density: "0.2645163234204147819439"
+        log_density: "-1.32985231533315295939"
+        terms_needed: 29
+      - x: 3.0
+        density: "0.1841452397769589587947"
+        log_density: "-1.692030486129440591738"
+        terms_needed: 32
+      - x: 10.0
+        density: "0.0005048484499121503592073"
+        log_density: "-7.591252272911545988047"
+        terms_needed: 43
+  - mean: 1.0
+    dispersion: 0.2
+    power: 1.1
+    zero_probability: "0.003865920139472807508422"
+    points:
+      - x: 0.25
+        density: "0.1996430458732633618411"
+        log_density: "-1.611224277668504481085"
+        terms_needed: 8
+      - x: 0.5
+        density: "0.5790261015109850383667"
+        log_density: "-0.5464077220953760802893"
+        terms_needed: 11
+      - x: 1.0
+        density: "0.8765367519898013792753"
+        log_density: "-0.1317766451065178889343"
+        terms_needed: 16
+      - x: 2.0
+        density: "0.09162513086985221270158"
+        log_density: "-2.390049690455989965484"
+        terms_needed: 24
+      - x: 5.0
+        density: "1.910780158649044847903e-9"
+        log_density: "-20.07575421825928219742"
+        terms_needed: 43
+  - mean: 5.0
+    dispersion: 1.0
+    power: 1.9
+    zero_probability: "0.000007919444995808676088263"
+    points:
+      - x: 0.5
+        density: "0.1548687222924643987856"
+        log_density: "-1.865177473882027788433"
+        terms_needed: 59
+      - x: 1.0
+        density: "0.1490032594017214009645"
+        log_density: "-1.903787098096597895891"
+        terms_needed: 61
+      - x: 3.0
+        density: "0.1141701425739013297801"
+        log_density: "-2.17006546450864848373"
+        terms_needed: 64
+      - x: 5.0
+        density: "0.08017920804536713251391"
+        log_density: "-2.523491049025746272525"
+        terms_needed: 66
+      - x: 10.0
+        density: "0.02885978363543530208693"
+        log_density: "-3.545306222704179003527"
+        terms_needed: 68
+  - mean: 100.0
+    dispersion: 0.1
+    power: 1.5
+    zero_probability: "1.383896526736737530649e-87"
+    points:
+      - x: 100.0
+        density: "0.03985679791780710637032"
+        log_density: "-3.222462300645470593713"
+        terms_needed: 325

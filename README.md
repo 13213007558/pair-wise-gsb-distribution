@@ -29,6 +29,7 @@ The following table lists the available distributions and the methods available 
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
+| Tweedie (1<p<2)  |     | x   | x        |     | x    | x    | x        | x        | x        | x       |
 
 ## Installation
 
@@ -54,6 +55,12 @@ You can find automatically generated documentation on [RubyDoc](http://www.rubyd
 ```
 # Returns Gaussian PDF for x.
 pdf = Distribution::Normal.pdf(x)
+
+# Tweedie compound Poisson-Gamma: x=0 is a separate point mass.
+Distribution::Tweedie.zero_probability(mu, phi, p)
+Distribution::Tweedie.pdf(x, mu, phi, p)      # x > 0
+Distribution::Tweedie.log_pdf(x, mu, phi, p)
+sampler = Distribution::Tweedie.rng(mu, phi, p, seed)
 
 # Returns Gaussian CDF for x.
 cdf = Distribution::Normal.cdf(x)
@@ -107,6 +114,7 @@ Shortnames for distributions:
   * Hypergeometric: hypg
   * Exponential: expo
   * Poisson: pois
+  * Tweedie: tweedie
   * Beta: beta
   * Gamma: gamma
   * LogNormal: lognormal
