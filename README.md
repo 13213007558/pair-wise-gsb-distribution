@@ -72,6 +72,31 @@ include Distribution::Shorthand
 tdist_cdf(x)
 ```
 
+### Saddlepoint approximation
+
+When only a cumulant generating function is available, build a
+`Distribution::SaddlepointApproximation` with `K(t)`, `K'(t)`, and
+`K''(t)` callbacks. Pass `kind: :continuous` for the Lugannani-Rice tail
+formula, or `kind: :lattice` with `lattice_spacing:` for Daniels' lattice
+correction. The returned result is explicitly marked as an approximation and
+includes saddlepoint, iteration, residual, bracket, and method diagnostics.
+Failures at support boundaries or outside the reachable CGF range return a
+failure result instead of forcing a root.
+
+```ruby
+saddle = Distribution::SaddlepointApproximation.new(
+  kind: :continuous,
+  cgf: ->(t) { -3 * Math.log(1 - t) },
+  cgf_derivative: ->(t) { 3 / (1 - t) },
+  second_derivative: ->(t) { 3 / (1 - t)**2 }
+)
+
+result = saddle.upper_tail(5.0)
+result.approximate? # true
+result.probability
+result.saddlepoint
+```
+
 ## API Structure
 
 ```ruby
