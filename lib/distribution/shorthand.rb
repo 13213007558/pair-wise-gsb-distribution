@@ -1,6 +1,7 @@
 module Distribution
   module Shorthand
     EQUIVALENCES = { p_value: :p, cdf: :cdf, pdf: :pdf, rng: :r,
+                     survival: :sf, log_pmf: :lpmf,
                      exact_pdf: :epdf, exact_cdf: :ecdf, exact_p_value: :ep }
 
     def self.add_shortcut(shortcut, method, &block)

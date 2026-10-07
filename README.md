@@ -28,6 +28,7 @@ The following table lists the available distributions and the methods available 
 | Weibull          |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Binomial         |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 | Poisson          |     |     |          |     | x    | x    | x        | x        | x        | x       |
+| Skellam          |     |     |          |     | x    | x    | x        | x        | x        | x       |
 | Hypergeometric   |     |     |          | x   | x    | x    | x        | x        | x        | x       |
 
 ## Installation
@@ -107,6 +108,7 @@ Shortnames for distributions:
   * Hypergeometric: hypg
   * Exponential: expo
   * Poisson: pois
+  * Skellam: skel
   * Beta: beta
   * Gamma: gamma
   * LogNormal: lognormal

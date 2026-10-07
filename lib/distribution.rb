@@ -104,6 +104,7 @@ module Distribution
   require 'distribution/hypergeometric'
   require 'distribution/exponential'
   require 'distribution/poisson'
+  require 'distribution/skellam'
   require 'distribution/logistic'
   require 'distribution/lognormal'
   require 'distribution/weibull'
