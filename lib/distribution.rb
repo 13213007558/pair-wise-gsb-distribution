@@ -107,6 +107,7 @@ module Distribution
   require 'distribution/logistic'
   require 'distribution/lognormal'
   require 'distribution/weibull'
+  require 'distribution/tweedie'
 
   init_java if has_java?
 end
